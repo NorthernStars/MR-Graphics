@@ -18,7 +18,6 @@ public class GraphicsConnection extends BasicUDPServerConnection {
 
 	private static final Logger log = LogManager.getLogger();
 	
-	public static int port = 9060;
 	private boolean mIsConnectionEstablished = false;
 	
 	public boolean establishConnection(InetAddress host, int port){
