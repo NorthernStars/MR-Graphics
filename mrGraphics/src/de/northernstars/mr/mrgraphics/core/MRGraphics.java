@@ -14,7 +14,7 @@ import de.northernstars.mr.mrgraphics.network.Worker;
 public class MRGraphics {
 
 	private static final Logger log = LogManager.getLogger();
-	private static String host = "127.0.0.1";
+	private static String host = "192.168.0.109";
 	private static int port = 9060;
 	
 	private MainFrame gui;

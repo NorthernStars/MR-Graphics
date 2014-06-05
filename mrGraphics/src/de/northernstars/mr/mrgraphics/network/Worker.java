@@ -35,10 +35,10 @@ public class Worker implements Runnable {
 					// get worlddata
 					String xml = mCore.getConnection().getDatagrammString(timeout);
 					
-					if( xml != null ){
+					if( xml != null && !xml.isEmpty() ){
 						
 						log.debug("Recieved worlddata");
-						System.out.println(xml);
+//						System.out.println(xml);
 						WorldData wData = WorldData.unmarshallXMLPositionDataPackageString(xml);
 						
 						// update graphics

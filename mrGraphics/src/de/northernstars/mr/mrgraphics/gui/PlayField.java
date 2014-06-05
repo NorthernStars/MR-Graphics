@@ -101,10 +101,20 @@ public class PlayField extends JPanel implements ComponentListener{
 				}
 				
 				g2d.setStroke(mNormalStroke);
-				g2d.drawLine( (int)( mWidth * vPlayer.getPosition().getX() ), 
-						(int)( -mHeight * vPlayer.getPosition().getY() ),
-						(int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
-						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ) );
+				g2d.drawLine( (int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
+						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
+						(int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle()-90 ) ) ),
+						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle()-90 ) ) ));
+				
+				g2d.drawLine( (int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
+						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
+						(int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle()+90 ) ) ),
+						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle()+90 ) ) ));
+				
+//				g2d.drawLine( (int)( mWidth * vPlayer.getPosition().getX() ), 
+//						(int)( -mHeight * vPlayer.getPosition().getY() ),
+//						(int)( mWidth * vPlayer.getPosition().getX() + 0.010 * mWidth * Math.cos( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ),
+//						(int)( -mHeight * vPlayer.getPosition().getY() + 0.010 * mWidth * Math.sin( Math.toRadians( -vPlayer.getOrientationAngle() ) ) ) );
 				
 	            g2d.fillOval( (int)( mWidth * vPlayer.getPosition().getX() - mHalfPointSize ), 
 						(int)( -mHeight * vPlayer.getPosition().getY() - mHalfPointSize ), 
