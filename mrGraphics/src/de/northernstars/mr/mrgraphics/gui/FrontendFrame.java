@@ -273,7 +273,7 @@ public class FrontendFrame extends JFrame {
 		txtWindowSizeHeight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int[] windowSize = mCore.getWindowSize();
-				windowSize[0] = Integer.parseInt(txtWindowSizeHeight.getText()
+				windowSize[1] = Integer.parseInt(txtWindowSizeHeight.getText()
 						.trim());
 				mCore.setWindowSize(windowSize);
 			}
