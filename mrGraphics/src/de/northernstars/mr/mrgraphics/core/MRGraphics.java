@@ -27,6 +27,7 @@ public class MRGraphics implements WindowListener {
 	private static boolean fullscreenMode = false;
 	private static int[] windowSize;
 	private static int[] windowPosition;
+	private static int screen;
 
 	private MainFrame gui;
 	private GraphicsConnection connection;
@@ -71,7 +72,8 @@ public class MRGraphics implements WindowListener {
 	private void startGraphics(){
 		
 		log.error("Starting mrGraphics");
-		gui = new MainFrame(fullscreenMode, windowSize, windowPosition);
+		gui = new MainFrame(fullscreenMode, windowSize, windowPosition, screen);
+		
 		gui.addWindowListener(this);
 		gui.setVisible(true);
 		gui.setPlayField(new PlayField());
@@ -112,6 +114,8 @@ public class MRGraphics implements WindowListener {
 		windowPosition[0] = Integer.parseInt( cmdLine.getOptionValue("left", "0") );
 		windowPosition[1] = Integer.parseInt( cmdLine.getOptionValue("top", "0") );
 		
+		screen = Integer.parseInt( cmdLine.getOptionValue("display", "0") );
+		
 		if( cmdLine.hasOption("fullscreen") ){
 			fullscreenMode = true;
 		}
@@ -130,6 +134,7 @@ public class MRGraphics implements WindowListener {
 		options.addOption("l", "left", true, "Window left offset in px if no fullscreen.Default is 0px.");
 		options.addOption("t", "top", true, "Window top offset in px if no fullscreen.Default is 0px.");
 		options.addOption("f", "fullscreen", false, "Enable fullscreen mode. Off by default.");
+		options.addOption("d", "display", true, "Number of display/screen where to show szenario gui. Default is 0.");
 		options.addOption("?", "help", false, "Show help.");
 		
 		return options;
@@ -180,8 +185,10 @@ public class MRGraphics implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		worker.setActive(false);
-		log.debug("Application closed");
+		if( worker != null ){
+			worker.setActive(false);
+			log.debug("Application closed");
+		}
 	}
 
 	@Override

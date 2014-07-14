@@ -42,6 +42,13 @@ public class Worker implements Runnable {
 						WorldData wData = WorldData.unmarshallXMLPositionDataPackageString(xml);
 						
 						// update graphics
+						int minutes = (int)(wData.getPlayTime() / 60);
+						int seconds = (int)(wData.getPlayTime() - wData.getPlayTime() / 60);
+						int scoreBlue = wData.getScore().getScoreBlueTeam();
+						int scoreYellow = wData.getScore().getScoreYellowTeam();
+						
+						String title = String.format("%s %02d : %02d %s - %02d:%02d", "Yellow", scoreYellow, scoreBlue, "Blue", minutes, seconds);
+						mCore.getGui().setTitle(title);
 						mCore.getGui().getPlayField().setWorld(wData.copy());
 						mCore.getGui().getPlayField().updateUI();
 						

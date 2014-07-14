@@ -1,53 +1,32 @@
 package de.northernstars.mr.mrgraphics.gui;
 
 import java.awt.BorderLayout;
-import java.awt.DisplayMode;
-import java.awt.GraphicsEnvironment;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame {
+public class MainFrame extends MRGraphicsFrame {
 
-	private static final Logger log = LogManager.getLogger();
-	
 	private JPanel contentPane;
 	private PlayField playField;
 	
 	/**
-	 * Create the frame.
-	 * @param fullscreenMode	Set {@code true} to show gui in fullscreen mode.
-	 * @param windowSize		Window size [width, height] if {@code fullscreenMode} is {@code false}.
-	 * @param windowPosition	Window position [left, top] if {@code fullscreenMode} is {@code false}.
+	 * Constructor
+	 * @param fullscreenMode	Set {@code true} to enable fullscreen mode.
+	 * @param windowSize		{@link Integer} array [width, height] of window size if {@code fullScreenMode} is {@code false}.
+	 * @param windowPosition	{@link Integer} array [left, top] of window position if {@code fullScreenMode} is {@code false}.
+	 * @param screen			{@link Integer} of screen number (starting by 0).
 	 */
-	public MainFrame(boolean fullscreenMode, int[] windowSize, int[] windowPosition) {		
-		GraphicsEnvironment lge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		DisplayMode mode = lge.getDefaultScreenDevice().getDisplayMode();
+	public MainFrame(boolean fullscreenMode, int[] windowSize, int[] windowPosition, int screen) {	
+		super(fullscreenMode, windowSize, windowPosition, screen);
 		
 		setTitle("MR Graphics");
-		setUndecorated(true);
-		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		setAlwaysOnTop(false);		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		if( fullscreenMode ){
-			log.debug( "Showing frame in fullscreen mode " + Integer.toString(mode.getWidth()) + "x" + Integer.toString(mode.getHeight()) );
-			setBounds(0, 0, (int) mode.getWidth(), (int) mode.getHeight());
-		} else {
-			log.debug( "Showing frame in window mode " + Integer.toString(windowSize[0]) + "x" + Integer.toString(windowSize[1])
-					+ " at " + Integer.toString(windowPosition[0]) +", " + Integer.toString(windowPosition[1]) );
-			setBounds(windowPosition[0], windowPosition[1], windowSize[0], windowSize[1]);
-		}
+		setAlwaysOnTop(true);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -80,7 +59,6 @@ public class MainFrame extends JFrame {
 		
 		playField = field;
 		contentPane.add(playField, BorderLayout.CENTER);
-	}
-	
+	}	
 
 }
