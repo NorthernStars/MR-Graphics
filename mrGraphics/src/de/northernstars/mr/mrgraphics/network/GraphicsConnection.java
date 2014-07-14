@@ -17,45 +17,50 @@ public class GraphicsConnection extends BasicUDPServerConnection {
 	}
 
 	private static final Logger log = LogManager.getLogger();
-	
+
 	private boolean mIsConnectionEstablished = false;
-	
-	public boolean establishConnection(InetAddress host, int port){
-		
+
+	public boolean establishConnection(InetAddress host, int port) {
+
 		try {
-		
-			log.info( "Establishing connection: " + toString() );
-			
-			ConnectionRequest vRequestToVision = new ConnectionRequest( "defaultserver" );
-			log.debug( "Sending handshake: " + vRequestToVision.toString() );
-			sendDatagrammString( vRequestToVision.toXMLString() );
-			
-			ConnectionAcknowlege vVisionAcknowledge = ConnectionAcknowlege.unmarshallXMLConnectionAcknowlegeString( getDatagrammString( 1000 ) );
-			
-			log.debug( "Recieving Acknowledge: " + vVisionAcknowledge );
-			
-			if( vVisionAcknowledge != null && vVisionAcknowledge.isConnectionAllowed() ){
-				
+
+			log.info("Establishing connection: {}", this);
+
+			ConnectionRequest vRequestToVision = new ConnectionRequest(
+					"defaultserver");
+			log.debug("Sending handshake: {}", vRequestToVision);
+			sendDatagrammString(vRequestToVision.toXMLString());
+
+			ConnectionAcknowlege vVisionAcknowledge = ConnectionAcknowlege
+					.unmarshallXMLConnectionAcknowlegeString(getDatagrammString(1000));
+
+			log.debug("Recieving Acknowledge: {}", vVisionAcknowledge);
+
+			if (vVisionAcknowledge != null
+					&& vVisionAcknowledge.isConnectionAllowed()) {
+
 				ConnectionEstablished vVisionConnectionEstablished = new ConnectionEstablished();
-				log.debug( "Sending Acknowledge: " + vVisionConnectionEstablished );
-				sendDatagrammString( vVisionConnectionEstablished.toXMLString() );
-				
+				log.debug("Sending Acknowledge: {}",
+						vVisionConnectionEstablished);
+				sendDatagrammString(vVisionConnectionEstablished.toXMLString());
+
 				mIsConnectionEstablished = true;
-				
+
 				log.info("Connection established");
 				return mIsConnectionEstablished;
-				
+
 			}
-	
-		} catch ( Exception vException ) {
-	
-			log.error( "Could not establish connection to vision: " + vException.getLocalizedMessage() );
-			log.catching( Level.ERROR, vException );
-	        
+
+		} catch (Exception vException) {
+
+			log.error("Could not establish connection to vision: {}",
+					vException.getLocalizedMessage());
+			log.catching(Level.ERROR, vException);
+
 		}
 
 		return false;
-		
+
 	}
-	
+
 }
