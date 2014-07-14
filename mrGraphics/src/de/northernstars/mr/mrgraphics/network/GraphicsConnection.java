@@ -41,6 +41,8 @@ public class GraphicsConnection extends BasicUDPServerConnection {
 				sendDatagrammString( vVisionConnectionEstablished.toXMLString() );
 				
 				mIsConnectionEstablished = true;
+				
+				log.info("Connection established");
 				return mIsConnectionEstablished;
 				
 			}
@@ -52,7 +54,6 @@ public class GraphicsConnection extends BasicUDPServerConnection {
 	        
 		}
 
-		log.debug( "Could not establish connection" );
 		return false;
 		
 	}

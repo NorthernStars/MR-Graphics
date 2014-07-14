@@ -14,5 +14,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/everythingbuild/libraries/mrservermisc.jar"/>
 	<classpathentry kind="lib" path="/everythingbuild/scenarios/mrscenariofootball.jar"/>
+	<classpathentry kind="lib" path="/everythingbuild/librariesexternal/commons-cli-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
