@@ -19,5 +19,6 @@
    	  <appender-ref ref="Console"/>
       <appender-ref ref="ERROR" />
     </root>
-  </loggers>
+  </loggers>,0
+  
 </Configuration>
