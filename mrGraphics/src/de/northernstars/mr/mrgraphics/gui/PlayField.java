@@ -95,7 +95,7 @@ public class PlayField extends JPanel implements ComponentListener {
 					g2d.setColor(Color.YELLOW);
 					break;
 				default:
-					g2d.setColor(Color.GRAY);
+					g2d.setColor(Color.RED);
 
 				}
 
