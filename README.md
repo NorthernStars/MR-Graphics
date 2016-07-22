@@ -4,7 +4,7 @@ Fullscreen graphics view for Mixed-Reality soccer scenario.
 
 ## DEPENDENCIES
 
-* mrServer build files mrservermisc.jar and mrscenariofootball.jar
+* mrServer build files
 
 ## INSTALLATION
 Firts you need the mrServer (https://github.com/NorthernStars/mrserver) installed and build.
