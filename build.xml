@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project mrGraphics">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/mrgraphics.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="de.northernstars.mr.mrgraphics.core.MRGraphics"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/mrGraphics/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/libraries/mrservermisc.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/scenarios/mrscenariofootball.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/log4j-api-2.0-rc1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/log4j-core-2.0-rc1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/commons-cli-1.2.jar"/>
+        </jar>
+    </target>
+</project>
