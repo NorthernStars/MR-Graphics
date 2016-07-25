@@ -85,6 +85,7 @@ public class MRGraphics implements WindowListener {
 		gui.setVisible(true);
 		gui.setPlayField(new PlayField());
 		gui.getPlayField().updateUI();
+		gui.addWindowListener(this);
 
 		if( !mQuietMode ){
 			frontent = new FrontendFrame(this);
@@ -251,14 +252,18 @@ public class MRGraphics implements WindowListener {
 	}
 
 	@Override
-	public void windowClosed(WindowEvent e) {
-		if (worker != null) {
-			worker.setActive(false);
-			gui.dispose();
-
-			frontent.removeWindowListener(this);
-			frontent.dispose();
-			log.debug("Application closed");
+	public void windowClosed(WindowEvent e) {		
+		if( (mAutoConnect && e.getWindow() == gui) || (!mAutoConnect && e.getWindow() == frontent ) ){
+			if( worker != null ){
+				worker.setActive(false);
+				gui.dispose();
+	
+				if( frontent != null ){
+					frontent.removeWindowListener(this);
+					frontent.dispose();
+				}
+				log.debug("Application closed");
+			}
 		}
 	}
 
