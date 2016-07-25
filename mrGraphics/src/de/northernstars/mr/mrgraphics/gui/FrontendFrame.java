@@ -119,6 +119,13 @@ public class FrontendFrame extends JFrame {
 		});
 		btnConnect.setMnemonic('C');
 		panel_1.add(btnConnect);
+		
+		// check if to disable connect buttons
+		if( mCore.isAutoconnect() ){
+			btnConnect.setEnabled(false);
+			txtServerIP.setEnabled(false);
+			txtServerPort.setEnabled(false);
+		}
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Scenario GUI Settings",

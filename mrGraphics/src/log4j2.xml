@@ -15,7 +15,7 @@
     </RandomAccessFile>
   </appenders>
   <loggers>
-   	<root level="info">
+   	<root level="INFO">
    	  <appender-ref ref="Console"/>
       <appender-ref ref="ERROR" />
     </root>

@@ -37,6 +37,9 @@ public class MRGraphics implements WindowListener {
 
 	private Options options = new Options();
 	private CommandLine cmdLine;
+	
+	private boolean mQuietMode = false;
+	private boolean mAutoConnect = false;
 
 	/**
 	 * Constructor
@@ -58,6 +61,10 @@ public class MRGraphics implements WindowListener {
 		}
 
 		startGraphics();
+		
+		if( mAutoConnect )
+			connectToServer();
+			
 	}
 
 	/**
@@ -72,16 +79,18 @@ public class MRGraphics implements WindowListener {
 	 */
 	private void startGraphics() {
 
-		log.error("Starting mrGraphics");
+		log.info("Starting mrGraphics");
 
 		gui = new MainFrame(fullscreenMode, windowSize, windowPosition, screen);
 		gui.setVisible(true);
 		gui.setPlayField(new PlayField());
 		gui.getPlayField().updateUI();
 
-		frontent = new FrontendFrame(this);
-		frontent.addWindowListener(this);
-		frontent.setVisible(true);
+		if( !mQuietMode ){
+			frontent = new FrontendFrame(this);
+			frontent.addWindowListener(this);
+			frontent.setVisible(true);
+		}
 
 	}
 
@@ -103,8 +112,9 @@ public class MRGraphics implements WindowListener {
 			return true;
 
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			log.error( "Cannot connect to server: {}", e.getMessage() );
 		}
+		
 		return false;
 	}
 
@@ -143,9 +153,24 @@ public class MRGraphics implements WindowListener {
 
 		screen = Integer.parseInt(cmdLine.getOptionValue("display", "0"));
 
-		if (cmdLine.hasOption("fullscreen")) {
+		if( cmdLine.hasOption("fullscreen") ){
 			fullscreenMode = true;
 		}
+		
+		if( cmdLine.hasOption("quiet") ){
+			mQuietMode = true;
+			mAutoConnect = true;
+		}
+		
+		if( cmdLine.hasOption("autoconnect") ){
+			mAutoConnect = true;
+		}
+		
+
+		log.debug("Command line options: server={}:{}, quiet={}, autoconnect={}, fullscreen={}, screen={}, windowWidth={}, windowHeight={}, left={}, right={}",
+				host, port, mQuietMode, mAutoConnect, fullscreenMode, screen, windowSize[0], windowSize[1], windowPosition[0], windowPosition[1]);
+		
+		
 	}
 
 	/**
@@ -170,6 +195,10 @@ public class MRGraphics implements WindowListener {
 				"Enable fullscreen mode. Off by default.");
 		options.addOption("d", "display", true,
 				"Number of display/screen where to show szenario gui. Default is 0.");
+		options.addOption("a", "autoconnect", false,
+				"Auto connect to server using default ip and port or specified by -s and -p.");
+		options.addOption("q", "quiet", false,
+				"Starts without control interface gui, automatically uses auto connect (see -a).");		
 		options.addOption("?", "help", false, "Show help.");
 
 		return options;
@@ -342,6 +371,14 @@ public class MRGraphics implements WindowListener {
 	public void setFullscreenMode(boolean fullscreenMode) {
 		this.fullscreenMode = fullscreenMode;
 		getGui().setFullscreenMode(fullscreenMode);
+	}
+	
+	public boolean isAutoconnect(){
+		return mAutoConnect;
+	}
+	
+	public boolean isQuietMode(){
+		return mQuietMode;
 	}
 
 }
