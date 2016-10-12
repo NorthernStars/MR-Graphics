@@ -34,8 +34,16 @@ public abstract class MRGraphicsFrame extends JFrame {
 	public MRGraphicsFrame(boolean fullscreenMode, int[] windowSize,
 			int[] windowPosition, int screen) {
 		this.fullscreenMode = fullscreenMode;
-		this.windowSize = windowSize;
-		this.windowPosition = windowPosition;
+		if( windowSize == null ){
+			this.windowSize = new int[]{0, 0};
+		} else {
+			this.windowSize = windowSize;
+		}
+		if( windowPosition == null ){
+			this.windowPosition = new int[]{0, 0};
+		} else {
+			this.windowPosition = windowPosition;
+		}
 		this.screen = screen;
 
 		showOnScreen(screen);
@@ -82,7 +90,6 @@ public abstract class MRGraphicsFrame extends JFrame {
 					
 					// Exlusive mode
 					dev.setFullScreenWindow(this);
-					windowPosition = new int[]{0, 0};
 					log.debug("Showing frame in exclusive fullscreen mode");
 					
 				} else {
