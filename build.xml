@@ -6,30 +6,28 @@
     <property name="dir.buildfile" value="."/>
     <property name="src.dir" location="./mrGraphics/src" />
     <property name="build.dir" location="./mrGraphics/build" />
+    <property name="dir.mrserver" value="../mrserver/everythingbuild"/>
     <property name="dir.workspace" value="${dir.buildfile}/.."/>
     <property name="dir.jarfile" value="${dir.buildfile}"/>
     
 
     <path id="build.classpath">
-	    <fileset dir="../mrserver/everythingbuild/libraries">
-	    	    <include name="mrservermisc.jar" />
+		<fileset dir="${dir.mrserver}/libraries">
+			<include name="mrservermisc.jar" />
+		</fileset>
+	    <fileset dir="${dir.mrserver}/scenarios">
+			<include name="mrscenariofootball.jar"/>
 	    </fileset>
-	    <fileset dir="../mrserver/everythingbuild/scenarios">
-	            <include name="mrscenariofootball.jar"/>
-	    </fileset>
-	    <fileset dir="../mrserver/everythingbuild/librariesexternal">
-	            <include name="log4j-api-2.0-rc1.jar"/>
-	            <include name="log4j-core-2.0-rc1.jar"/>
-            	    <include name="commons-cli-1.2.jar"/>
-            </fileset>
+	    <fileset dir="${dir.mrserver}/librariesexternal">
+			<include name="log4j-api-2.0-rc1.jar"/>
+			<include name="log4j-core-2.0-rc1.jar"/>
+			<include name="commons-cli-1.2.jar"/>
+		</fileset>
 	</path>
 	
     <!-- Compiles the java code (including the usage of library for JUnit) -->
 	<target name="compile" depends="clean, makedir">
-	<javac srcdir="${src.dir}" destdir="${build.dir}" encoding="UTF-8"
-		classpathref="build.classpath">
-	</javac>
-
+		<javac srcdir="${src.dir}" destdir="${build.dir}" encoding="UTF-8" classpathref="build.classpath"></javac>
 	</target>
 	
 	<target name="clean">
@@ -45,8 +43,8 @@
     
     <target name="create_run_jar" depends="compile">
         <jar destfile="${dir.jarfile}/mrgraphics.jar" filesetmanifest="mergewithoutmain">
-            <manifest>
-                <attribute name="Main-Class" value="de.northernstars.mr.mrgraphics.core.MRGraphics"/>
+			<manifest>
+				<attribute name="Main-Class" value="de.northernstars.mr.mrgraphics.core.MRGraphics"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="${dir.jarfile}/mrGraphics/build"/>
@@ -55,11 +53,11 @@
 				<include name="de/northernstars/mr/mrgraphics/gui/*.jpg" />
 				<include name="de/northernstars/mr/mrgraphics/gui/*.gif" />
 			</fileset>
-            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/libraries/mrservermisc.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/scenarios/mrscenariofootball.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/log4j-api-2.0-rc1.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/log4j-core-2.0-rc1.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="../mrserver/everythingbuild/librariesexternal/commons-cli-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.mrserver}/libraries/mrservermisc.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.mrserver}/scenarios/mrscenariofootball.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.mrserver}/librariesexternal/log4j-api-2.0-rc1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.mrserver}/librariesexternal/log4j-core-2.0-rc1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.mrserver}/librariesexternal/commons-cli-1.2.jar"/>
         </jar>
     </target>
 </project>
