@@ -1,10 +1,10 @@
 package de.northernstars.mr.mrgraphics.network;
 
 import java.net.InetAddress;
-import mrservermisc.network.BasicUDPServerConnection;
-import mrservermisc.network.handshake.server.ConnectionAcknowlege;
-import mrservermisc.network.handshake.server.ConnectionEstablished;
-import mrservermisc.network.handshake.server.ConnectionRequest;
+import de.fh_kiel.robotics.mr.server.misc.network.BasicUDPServerConnection;
+import de.fh_kiel.robotics.mr.server.misc.network.handshake.server.ConnectionAcknowlege;
+import de.fh_kiel.robotics.mr.server.misc.network.handshake.server.ConnectionEstablished;
+import de.fh_kiel.robotics.mr.server.misc.network.handshake.server.ConnectionRequest;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

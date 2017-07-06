@@ -2,7 +2,7 @@ package de.northernstars.mr.mrgraphics.network;
 
 import java.net.SocketTimeoutException;
 
-import mrscenariofootball.core.data.worlddata.server.WorldData;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.WorldData;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

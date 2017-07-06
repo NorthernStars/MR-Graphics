@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import mrscenariofootball.core.data.ScenarioInformation;
-import mrscenariofootball.core.data.worlddata.server.Player;
-import mrscenariofootball.core.data.worlddata.server.ReferencePoint;
-import mrscenariofootball.core.data.worlddata.server.ReferencePointName;
-import mrscenariofootball.core.data.worlddata.server.ServerPoint;
-import mrscenariofootball.core.data.worlddata.server.WorldData;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.ScenarioInformation;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.Player;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.ReferencePoint;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.ReferencePointName;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.ServerPoint;
+import de.fh_kiel.robotics.mr.scenario.football.core.data.worlddata.server.WorldData;
 
 @SuppressWarnings("serial")
 public class PlayField extends JPanel implements ComponentListener {
